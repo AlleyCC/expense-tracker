@@ -1,0 +1,28 @@
+<div class="container-fluid m-5 justify-content-center">
+  <select class="form-select" aria-label="Default select example" style="width: 40%;" select="selected">
+    <option selected>類別</option>
+    <option value="sort_household">家居物業</option>
+    <option value="sort_traffic">交通出行</option>
+    <option value="sort_entertainment">休閒娛樂</option>
+    <option value="sort_food">餐飲食品</option>
+    <option value="sort_others">其他</option>
+  </select>
+</div>
+
+
+<ul class="list-group list-group-flush ">
+  {{#each}}
+  <li class="list-group-item">
+    <div class="row">
+      <div class="col mx-auto">
+        <h4>name</h4>
+      </div>
+      <div class="col mx-auto">
+        <a class="btn btn-success mx-1" href="/:id/edit">edit</a>
+        <a class="btn btn-success mx-1" href="/:id/delete">delete</a>
+      </div>
+    </div>
+  </li>
+  {{/each}}
+</ul>
+
