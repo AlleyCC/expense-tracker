@@ -1,0 +1,32 @@
+<div class="container-fluid">
+  <form action="/records/new" method="POST">
+    <div class="input-group mb-3">
+      <label for="name" class="col-sm-2 col-form-label">名稱:</label>
+      <input name="name" type="text" class="form-control" placeholder="消費事項..." aria-label="Recipient's username" aria-describedby="basic-addon2">  
+    </div>
+    <div class="input-group mb-3">
+      <label for="date" class="col-sm-2 col-form-label">日期:</label>
+      <input name="date" type="text" class="form-control"  aria-describedby="basic-addon3">
+    </div>
+
+    <div class="input-group mb-3">
+      <label for="category" class="col-sm-2 col-form-label">類別:</label>
+      <select class="form-select" aria-label="Default select example" style="width: 40%;" select="selected">
+        <option selected>類別</option>
+        <option value="sort_household">家居物業</option>
+        <option value="sort_traffic">交通出行</option>
+        <option value="sort_entertainment">休閒娛樂</option>
+        <option value="sort_food">餐飲食品</option>
+        <option value="sort_others">其他</option>
+      </select>
+      
+    </div>
+    <div class="input-group mb-3">
+      <label for="amount" class="col-sm-2 col-form-label">金額:</label>
+      <input name="amount" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+      <span class="input-group-text">.00</span>
+    </div>
+    <a class="btn btn-primary" href="/records/new">新增</a>
+  </form>
+  
+</div>
