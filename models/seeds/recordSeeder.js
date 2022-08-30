@@ -14,6 +14,7 @@ db.once('open', () => {
       name: `看電影-${i}`,
       date: 2022-01-01,
       amount: 100,
+      categoryId: "630d68fc41ffb31c82913b2d"
     })
   }
   console.log('done with recordSeeder')

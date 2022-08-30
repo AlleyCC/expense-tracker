@@ -33,6 +33,7 @@ router.get('/:id/edit', (req, res) => {
     .lean()
     .then(record => {
       const categoryId = record.categoryId
+      if (!record) return res.render('index', { alert: '找不到資料!' })
       return Category.findById(categoryId)
         .lean()
         .then(data => {
@@ -43,7 +44,7 @@ router.get('/:id/edit', (req, res) => {
     .catch(err => console.log(err))
 })
 
-router.post('/:id/edit', (req, res) => {
+router.put('/:id', (req, res) => {
   const { name, date, category, amount } = req.body
   const id = req.params.id
   Category.findOne({ category })
@@ -64,7 +65,12 @@ router.post('/:id/edit', (req, res) => {
     .catch(err => console.log(err)) 
 })
 
-
 //delete
-
+router.delete('/:id', (req, res) => {
+  const id = req.params.id
+  return Record.findById(id)
+    .then(record => record.remove())
+    .then(() => res.redirect('/'))
+    .catch(err => console.log(err))
+})
 module.exports = router

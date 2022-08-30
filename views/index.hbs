@@ -8,7 +8,7 @@
     <option value="sort_others">其他</option>
   </select>
 </div>
-
+{{ alert }}
 <div class="container">
   <ul class="list-group list-group-flush ">
   {{#each records}}
@@ -26,7 +26,10 @@
         </div>
         <div class="col mx-auto">
           <a class="btn btn-success mx-1" href="./records/{{this._id}}/edit">edit</a>
-          <a class="btn btn-success mx-1" href="./records/{{this._id}}/delete">delete</a>
+          <form action="/records/{{this._id}}?_method=DELETE" method="POST" style="display: inline;">
+            <button class="btn btn-success mx-1" >delete</button>
+          </form>
+          
         </div>
       </div>
     </li>
