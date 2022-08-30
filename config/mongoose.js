@@ -7,7 +7,7 @@ db.on('error', () => {
 })
 
 db.once('open', () => {
-  console.log(process.env.MONGODB_URI)
+  
   console.log('MONGODB connected!')
 })
 
