@@ -9,13 +9,17 @@
   </select>
 </div>
 
-<div>
+<div class="container">
   <ul class="list-group list-group-flush ">
   {{#each records}}
     <li class="list-group-item">
       <div class="row">
         <div class="col mx-auto">
-          <h4>{{ records.name }}</h4>
+          <h4 class="col">{{ this.name }}</h4>
+          
+        </div>
+        <div class="col mx-auto">
+          <h4 class="col">{{ this.amount }}</h4>
         </div>
         <div class="col mx-auto">
           <a class="btn btn-success mx-1" href="/records/edit">edit</a>
