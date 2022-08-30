@@ -12,6 +12,12 @@ const recordSchema = new Schema({
   amount: {
     type: Number,
     required: true
+  },
+  categoryId: {
+    type: Schema.Types.ObjectId,
+    ref: 'Categories',
+    index: true,
+    required: true
   }
 })
 
