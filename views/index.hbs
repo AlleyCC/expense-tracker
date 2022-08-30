@@ -15,15 +15,18 @@
     <li class="list-group-item">
       <div class="row">
         <div class="col mx-auto">
-          <h4 class="col">{{ this.name }}</h4>
           
+          <h4 class="col">{{ this.name }}</h4>
+          </a>
         </div>
         <div class="col mx-auto">
+          
           <h4 class="col">{{ this.amount }}</h4>
+          </a>
         </div>
         <div class="col mx-auto">
-          <a class="btn btn-success mx-1" href="/records/edit">edit</a>
-          <a class="btn btn-success mx-1" href="/:id/delete">delete</a>
+          <a class="btn btn-success mx-1" href="./records/{{this._id}}/edit">edit</a>
+          <a class="btn btn-success mx-1" href="./records/{{this._id}}/delete">delete</a>
         </div>
       </div>
     </li>
