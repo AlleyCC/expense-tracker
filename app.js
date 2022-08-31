@@ -29,8 +29,10 @@ app.use(methodOverride('_method'))
 usePassport(app)
 app.use(flash())
 app.use((req, res, next) => {
+  console.log('req.isAuthenticated:', req.isAuthenticated())
+  console.log('req.user:', req.user)
   res.locals.user = req.user
-  res.locals.isAuthenticted = req.isAuthenticated()
+  res.locals.isAuthenticated = req.isAuthenticated() 
   res.locals.success_msg = req.flash('success_msg')
   res.locals.warning_msg = req.flash('warning_msg')
   next()

@@ -1,8 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const User = require('../../models/user')
 const passport = require('passport')
 const bcrypt = require('bcryptjs')
+
+const User = require('../../models/user')
 
 //login
 router.get('/login', (req, res) => {
@@ -10,10 +11,9 @@ router.get('/login', (req, res) => {
 })
 
 router.post('/login', passport.authenticate('local', {
-  successRedirect: '/',
-  failureRedirect: '/users/login' 
-  })
-)
+  failureRedirect: '/users/login',
+  successRedirect: '/'
+}))
 
 //register
 router.get('/register', (req, res) => {
@@ -21,7 +21,6 @@ router.get('/register', (req, res) => {
 })
 
 router.post('/register', (req, res) => {
-  //const userId = req.user._id
   const { name, email, password, passwordConfirm } = req.body
   console.log('req.body', req.body)
   User.findOne({ email })
