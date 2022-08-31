@@ -1,10 +1,12 @@
 const Record = require('../record')
 const db = require('../../config/mongoose')
 
-SEED_RECORD = {
-  name: "看電影",
-  date: "2022-01-01",
-  amount: 400
+
+
+SEED_USER = {
+  name: 'user_1',
+  email: 'user1@exmaple.com',
+  password: '12345678'
 }
 
 db.once('open', () => {
@@ -15,6 +17,7 @@ db.once('open', () => {
       date: 2022-01-01,
       amount: 100,
       categoryId: "630d68fc41ffb31c82913b2d"
+      userId: SEED_USER.password
     })
   }
   console.log('done with recordSeeder')

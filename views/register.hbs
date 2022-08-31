@@ -6,7 +6,7 @@
     <form action="/users/register" method="POST">
         <div class="mb-3">
           <label for="name" class="mb-2">name</label>
-          <input type="name" id="password" name="password" class="form-control" >
+          <input type="name" id="password" name="password" class="form-control"placeholder="Enter Your Name" >
         </div>
         <div class="mb-3">
           <label  class="mb-2">Email</label>
@@ -18,12 +18,13 @@
         </div>
         <div class="mb-3">
           <label for="passwordConfirm" class="mb-2">Confirm Password</label>
-          <input type="password" id="password" name="passwordConfirm" class="form-control" >
+          <input type="password" id="password" name="passwordConfirm" class="form-control" placeholder="Confirm Your Password">
         </div>
+        <button type="submit" class="btn btn-primary">Register</button>
       </form>
      
       <p class="lead mt-4">
-        No Account? <a href="">Register</a>
+        Already Have One? <a href="./login">Login</a>
       </p>
     </div>
   </div>

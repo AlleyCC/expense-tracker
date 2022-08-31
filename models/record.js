@@ -18,6 +18,12 @@ const recordSchema = new Schema({
     ref: 'Categories',
     index: true,
     required: true
+  },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'Users',
+    index: true,
+    required: true
   }
 })
 
