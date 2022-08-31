@@ -21,10 +21,10 @@ const recordSchema = new Schema({
   },
   userId: {
     type: Schema.Types.ObjectId,
-    ref: 'Users',
+    ref: 'User',
     index: true,
     required: true
   }
 })
 
-module.exports = mongoose.model('Records', recordSchema)
+module.exports = mongoose.model('Record', recordSchema)

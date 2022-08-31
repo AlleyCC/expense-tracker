@@ -20,7 +20,32 @@ router.get('/register', (req, res) => {
 })
 
 router.post('/register', (req, res) => {
-  res.render('register')
+  //const userId = req.user._id
+  const { name, email, password, passwordConfirm } = req.body
+  console.log('req.body', req.body)
+  User.findOne({ email })
+    .then(user => {
+
+      if (user) {
+        console.log('user exists')
+        return res.render('register', {   //if registered
+          name,
+          email,
+          password,
+          passwordConfirm
+        })
+      } else {
+        console.log('create user')
+        return User.create({  //if not registered yet
+          name,
+          email,
+          password
+        })
+          .then(() =>  res.redirect('/'))
+          .catch(err=> console.log(err))
+      }
+    })
+    .catch(err => console.log(err))
 })
 
 

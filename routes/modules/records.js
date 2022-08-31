@@ -9,6 +9,7 @@ router.get('/new', (req, res) => {
 
 router.post('/', (req, res) => {
   const { name, date, amount, category } = req.body
+  const userId = req.user._id
   Category.findOne({ category })
     .then(category => {
       const categoryId = category._id
@@ -16,7 +17,8 @@ router.post('/', (req, res) => {
         name, 
         date, 
         amount, 
-        categoryId
+        categoryId,
+        userId
       })
         .then(() => res.redirect('/'))
         .catch(err => console.log(err))
@@ -29,7 +31,8 @@ router.post('/', (req, res) => {
 //edit
 router.get('/:id/edit', (req, res) => {
   const id = req.params.id
-  Record.findById(id)
+  const userId = req.user._id
+  Record.findOne({ id, userId })
     .lean()
     .then(record => {
       const categoryId = record.categoryId
@@ -47,10 +50,11 @@ router.get('/:id/edit', (req, res) => {
 router.put('/:id', (req, res) => {
   const { name, date, category, amount } = req.body
   const id = req.params.id
+  const userId = req.user._id
   Category.findOne({ category })
     .then(category => {
       const categoryId = category._id
-      return Record.findById(id)
+      return Record.findOne({ id, userId })
                   .then(record => {
                     console.log('categoryId', categoryId)
                     record.name = name
@@ -59,7 +63,7 @@ router.put('/:id', (req, res) => {
                     record.categoryId = categoryId
                     return record.save()
                   })
-                  .then(() => res.redirect('/'))
+                  .then(() => res.redirect(`/records/${id}`))
                   .catch(err => console.log(err))
     }) 
     .catch(err => console.log(err)) 
@@ -68,7 +72,8 @@ router.put('/:id', (req, res) => {
 //delete
 router.delete('/:id', (req, res) => {
   const id = req.params.id
-  return Record.findById(id)
+  const userId = req.user._id
+  return Record.findOne({ id, userId })
     .then(record => record.remove())
     .then(() => res.redirect('/'))
     .catch(err => console.log(err))
