@@ -25,25 +25,43 @@ router.post('/register', (req, res) => {
   console.log('req.body', req.body)
   User.findOne({ email })
     .then(user => {
-
-      if (user) {
-        console.log('user exists')
-        return res.render('register', {   //if registered
+      const errors = []
+      //error messages
+      if (password !== passwordConfirm) {
+        errors.push({ message: 'Password and confirm password are different.'})
+      }
+      if (!name || !email || !password || !passwordConfirm) {
+        errors.push({ message: 'All fields are required.'})
+      }
+      if (errors.length) {
+        return res.render('register', { 
           name,
           email,
           password,
-          passwordConfirm
-        })
-      } else {
-        console.log('create user')
-        return User.create({  //if not registered yet
+          passwordConfirm,
+          errors
+         })
+      }
+      //registration status
+      if (user) {    //if registered
+        errors.push({ message: 'This email has been registered. Login now!' })
+        return res.render('register', {   
           name,
           email,
-          password
+          password,
+          passwordConfirm,
+          errors
         })
-          .then(() =>  res.redirect('/'))
-          .catch(err=> console.log(err))
       }
+       //if not registered yet
+      return User.create({  
+        name,
+        email,
+        password
+        })
+        .then(() =>  res.redirect('/'))
+        .catch(err=> console.log(err))
+      
     })
     .catch(err => console.log(err))
 })
@@ -54,6 +72,7 @@ router.get('/logout', (req, res) => {
   req.logout(err => {
     if (err) return next(err)
   })
+  req.flash('success_msg', 'Successfully Logout!')
   res.redirect('/users/login')
 })
 
