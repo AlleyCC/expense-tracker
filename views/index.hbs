@@ -1,11 +1,11 @@
 <div class="container-fluid m-5 justify-content-center">
-  <select class="form-select" aria-label="Default select example" style="width: 40%;" select="selected">
-    <option selected>類別</option>
-    <option value="sort_household">家居物業</option>
-    <option value="sort_traffic">交通出行</option>
-    <option value="sort_entertainment">休閒娛樂</option>
-    <option value="sort_food">餐飲食品</option>
-    <option value="sort_others">其他</option>
+  <select class="form-select" aria-label="Default select example" style="width: 40%;" onChange="window.location.href=this.value" select="selected">
+    <option {{nothingSelected}} value="/">類別-全部</option>
+    <option {{householdSelected}} value="sort_household">家居物業</option>
+    <option {{trafficSelected}} value="sort_traffic">交通出行</option>
+    <option {{entertainmentSelected}} value="sort_entertainment">休閒娛樂</option>
+    <option {{foodSelected}} value="sort_food">餐飲食品</option>
+    <option {{othersSelected}} value="sort_others">其他</option>
   </select>
 </div>
 {{ alert }}
@@ -15,8 +15,7 @@
     <li class="list-group-item">
       <div class="row">
         <div class="col mx-auto">
-          
-          <h4 class="col">{{ this.name }}</h4>
+          <h4 class="col"><i class="{{this.icon}} m-2"></i>{{ this.name }}</h4>
           </a>
         </div>
         <div class="col mx-auto">

@@ -24,6 +24,12 @@ const recordSchema = new Schema({
     ref: 'User',
     index: true,
     required: true
+  },
+  icon: {
+    type: String,
+    ref: 'Categories',
+    index: true,
+    required: true
   }
 })
 

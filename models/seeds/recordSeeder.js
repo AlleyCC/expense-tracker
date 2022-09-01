@@ -21,8 +21,10 @@ db.once('open', () => {
   Category.find()
     .then(category => {
       const categories = []
+      const icons = []
       Promise.all(Array.from({length: 5}, (_, i) => {
         categories.push(category[i]._id)
+        icons.push(category[i].icon)  
       }))
       bcrypt
         .genSalt(10)
@@ -36,14 +38,14 @@ db.once('open', () => {
         })
         .then(user => {
           const userId = user._id
-          console.log(userId)
           Promise.all(Array.from({length: 15}, (_, i) => {
             return Record.create({
               name: `看電影-${i}`,
               date: 2022-09-01,
               amount: 100,
               categoryId: categories[i%5],
-              userId
+              userId,
+              icon: icons[i%5]
             })
           }))
         .then(() => {
