@@ -6,10 +6,14 @@ const Category = require('../../models/category')
 router.get('/', (req, res) => {
   const nothingSelected = 'selected'
   const userId = req.user._id
+  let totalAmount = 0
   Records.find({userId})
     .lean()
     .then(records => {
-      return res.render('index', { records, nothingSelected })
+      records.map(record => {
+        totalAmount += record.amount
+      })
+      return res.render('index', { records, nothingSelected, totalAmount })
     })
 })
 
@@ -18,6 +22,7 @@ router.get('/', (req, res) => {
 router.get('/sort_household', (req, res) => {
   const householdSelected = 'selected'
   const userId = req.user._id
+  let totalAmount = 0
   Category.find({name: '家居物業'})
     .lean()
     .then(categoryData => {
@@ -25,7 +30,10 @@ router.get('/sort_household', (req, res) => {
       Records.find({categoryId, userId})
         .lean()
         .then(records => {
-          res.render('index', { records, householdSelected })
+          records.map(record => {
+            totalAmount += record.amount
+          })
+          res.render('index', { records, householdSelected, totalAmount })
         }) 
     })
 })
@@ -33,6 +41,7 @@ router.get('/sort_household', (req, res) => {
 router.get('/sort_traffic', (req, res) => {
   const trafficSelected = 'selected'
   const userId = req.user._id
+  let totalAmount = 0
   Category.find({name: '交通出行'})
     .lean()
     .then(categoryData => {
@@ -40,7 +49,10 @@ router.get('/sort_traffic', (req, res) => {
       Records.find({categoryId, userId})
         .lean()
         .then(records => {
-          res.render('index', { records, trafficSelected  })
+          records.map(record => {
+            totalAmount += record.amount
+          })
+          res.render('index', { records, trafficSelected, totalAmount })
         }) 
     })
 })
@@ -48,6 +60,7 @@ router.get('/sort_traffic', (req, res) => {
 router.get('/sort_entertainment', (req, res) => {
   const entertainmentSelected = 'selected'
   const userId = req.user._id
+  let totalAmount = 0
   Category.find({name: '休閒娛樂'})
     .lean()
     .then(categoryData => {
@@ -55,7 +68,10 @@ router.get('/sort_entertainment', (req, res) => {
       Records.find({categoryId, userId})
         .lean()
         .then(records => {
-          res.render('index', { records, entertainmentSelected })
+          records.map(record => {
+            totalAmount += record.amount
+          })
+          res.render('index', { records, entertainmentSelected, totalAmount })
         }) 
     })
 })
@@ -63,6 +79,7 @@ router.get('/sort_entertainment', (req, res) => {
 router.get('/sort_food', (req, res) => {
   const foodSelected = 'selected'
   const userId = req.user._id
+  let totalAmount = 0
   Category.find({name: '餐飲食品'})
     .lean()
     .then(categoryData => {
@@ -70,7 +87,10 @@ router.get('/sort_food', (req, res) => {
       Records.find({categoryId, userId})
         .lean()
         .then(records => {
-          res.render('index', { records, foodSelected })
+          records.map(record => {
+            totalAmount += record.amount
+          })
+          res.render('index', { records, foodSelected, totalAmount })
         }) 
     })
 })
@@ -78,6 +98,7 @@ router.get('/sort_food', (req, res) => {
 router.get('/sort_others', (req, res) => {
   const othersSelected = 'selected'
   const userId = req.user._id
+  let totalAmount = 0
   Category.find({name: '其他'})
     .lean()
     .then(categoryData => {
@@ -85,7 +106,10 @@ router.get('/sort_others', (req, res) => {
       Records.find({categoryId, userId})
         .lean()
         .then(records => {
-          res.render('index', { records, othersSelected })
+          records.map(record => {
+            totalAmount += record.amount
+          })
+          res.render('index', { records, othersSelected, totalAmount })
         }) 
     })
 })

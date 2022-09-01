@@ -1,5 +1,5 @@
-<div class="container-fluid m-5 justify-content-center">
-  <select class="form-select" aria-label="Default select example" style="width: 40%;" onChange="window.location.href=this.value" select="selected">
+<div class="container-fluid mt-5 " style="width: 50%; margin: 0 auto;">
+  <select class="form-select mb-5" aria-label="Default select example" style="width: 40%; margin: 0 auto;" onChange="window.location.href=this.value" select="selected">
     <option {{nothingSelected}} value="/">類別-全部</option>
     <option {{householdSelected}} value="sort_household">家居物業</option>
     <option {{trafficSelected}} value="sort_traffic">交通出行</option>
@@ -9,13 +9,18 @@
   </select>
 </div>
 {{ alert }}
-<div class="container">
+<div class="container mx-auto text-center mt-5 mb-5" style="width: 40%;">
+  <h3 >總金額</h3><strong><h1 class="fw-bold  text-danger">{{totalAmount}}</h1></strong>
+  
+
+</div>
+<div class="container " style="width: 70%;">
   <ul class="list-group list-group-flush ">
   {{#each records}}
     <li class="list-group-item">
       <div class="row">
         <div class="col mx-auto">
-          <h4 class="col"><i class="{{this.icon}} m-2"></i>{{ this.name }}</h4>
+          <h4 class="col"><i id="icon" class="{{this.icon}} m-2"></i>{{ this.name }}</h4>
           </a>
         </div>
         <div class="col mx-auto">
@@ -26,7 +31,7 @@
         <div class="col mx-auto">
           <a class="btn btn-success mx-1" href="./records/{{this._id}}/edit">edit</a>
           <form action="/records/{{this._id}}?_method=DELETE" method="POST" style="display: inline;">
-            <button class="btn btn-success mx-1" >delete</button>
+            <button class="btn btn-warning mx-1" >delete</button>
           </form>
           
         </div>
@@ -34,7 +39,10 @@
     </li>
   {{/each}}
   </ul>
-  <a class="btn btn-primary" href="./records/new">新增</a>
+  <div style="margin: 0 auto;">
+    <a class="btn btn-primary m-5" href="./records/new" style="margin: 0 auto; width: 70%;" >新增</a>
+  </div>
+  
 </div>
 
 

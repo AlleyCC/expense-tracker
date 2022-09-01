@@ -10,7 +10,6 @@ module.exports = app => {
   app.use(passport.session())
 
   passport.use(new LocalStrategy({ usernameField: 'email'}, (email, password, done) => {
-    console.log(email)
     User.findOne({email})
       .then(user => {
         //if user does not exists
