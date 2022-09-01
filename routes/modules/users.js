@@ -22,7 +22,6 @@ router.get('/register', (req, res) => {
 
 router.post('/register', (req, res) => {
   const { name, email, password, passwordConfirm } = req.body
-  console.log('req.body', req.body)
   User.findOne({ email })
     .then(user => {
       const errors = []
