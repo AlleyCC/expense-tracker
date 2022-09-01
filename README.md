@@ -4,10 +4,13 @@
  
  ## Features 
 
-1.Browse expense records
-2.Create new expense record      
-3.Edit and Delete your past expense record
-4.Create personal account
+1. Browse expense records
+
+2. Create new expense record      
+
+3. Edit and Delete your past expense record
+
+4. Create personal account
  
  ## Environment Setup
  - [Node.js](https://nodejs.org/en/) 
