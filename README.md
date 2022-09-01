@@ -10,7 +10,7 @@
 4.Create personal account
  
  ## Environment Setup
- - [Node.js](https://nodejs.org/en/) Setup || 環境建置
+ - [Node.js](https://nodejs.org/en/) 
  - [express](https://www.npmjs.com/package/express)
 
  ## Install 
