@@ -28,8 +28,7 @@ const recordSchema = new Schema({
   icon: {
     type: String,
     ref: 'Categories',
-    index: true,
-    required: true
+    index: true
   }
 })
 
