@@ -1,11 +1,11 @@
 <div class="container-fluid mt-5 " style="width: 50%; margin: 0 auto;">
   <select class="form-select mb-5" aria-label="Default select example" style="width: 40%; margin: 0 auto;" onChange="window.location.href=this.value" select="selected">
     <option {{nothingSelected}} value="/">類別-全部</option>
-    <option {{householdSelected}} value="sort_household">家居物業</option>
-    <option {{trafficSelected}} value="sort_traffic">交通出行</option>
-    <option {{entertainmentSelected}} value="sort_entertainment">休閒娛樂</option>
-    <option {{foodSelected}} value="sort_food">餐飲食品</option>
-    <option {{othersSelected}} value="sort_others">其他</option>
+    <option {{householdSelected}} value="/sort?sort=household">家居物業</option>
+    <option {{trafficSelected}} value="/sort?sort=traffic">交通出行</option>
+    <option {{entertainmentSelected}} value="/sort?sort=entertainment">休閒娛樂</option>
+    <option {{foodSelected}} value="/sort?sort=food">餐飲食品</option>
+    <option {{othersSelected}} value="/sort?sort=others">其他</option>
   </select>
 </div>
 {{ alert }}
