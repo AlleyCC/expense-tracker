@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs')
-if (process.env.NODE_ENV !== 'production'){
-  require('dotenv').config()
-}
+
+require('dotenv').config()
+
 
 const Record = require('../record')
 const User = require('../user')

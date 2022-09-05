@@ -1,9 +1,9 @@
 const Category = require('../category')
 const db = require('../../config/mongoose')
 
-if (process.env.NODE_ENV !== 'production'){
-  require('dotenv').config()
-} 
+
+require('dotenv').config()
+
 
 SEED_CATEGORY = [{
   'name': '家居物業',
