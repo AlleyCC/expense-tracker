@@ -17,7 +17,6 @@
  - [express](https://www.npmjs.com/package/express)
 
  ## Install 
- || 安裝  
  
  1.打開終端機，將此專案複製至本機
  ```
