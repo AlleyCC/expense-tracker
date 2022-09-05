@@ -40,9 +40,9 @@ db.once('open', () => {
           const userId = user._id
           Promise.all(Array.from({length: 15}, (_, i) => {
             return Record.create({
-              name: `看電影-${i}`,
-              date: 2022-09-01,
-              amount: 100,
+              name: `消費事項-${i}`,
+              date: `2022-09-${10 + i}`,
+              amount: 100 + 10 * i,
               categoryId: categories[i%5],
               userId,
               icon: icons[i%5]
