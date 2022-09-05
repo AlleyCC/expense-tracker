@@ -1,6 +1,10 @@
 const Category = require('../category')
 const db = require('../../config/mongoose')
 
+if (process.env.NODE_ENV !== 'production'){
+  require('dotenv').config()
+} 
+
 SEED_CATEGORY = [{
   'name': '家居物業',
   'icon': 'fa-solid fa-house'
@@ -20,8 +24,9 @@ SEED_CATEGORY = [{
 
 db.once('open', () => {
   console.log('MongoDB connected!')
-  for (let i = 0; i < 5; i ++){
-    Category.create(SEED_CATEGORY[i])
-  }
-  console.log('done with categorySeeder')
+  Promise.all(SEED_CATEGORY.map(category => Category.create(category)))
+    .then(() => {
+      console.log('done with categorySeeder')
+      process.exit()
+    })
 })
