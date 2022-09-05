@@ -13,7 +13,6 @@ module.exports = app => {
     User.findOne({email})
       .then(user => {
         //if user does not exists
-        console.log(user)
         if (!user) {
           return done(null, false, req.flash('warning_msg', 'Your email is not registered.'))
         }

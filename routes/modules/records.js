@@ -3,6 +3,7 @@ const router = express.Router()
 const Record = require('../../models/record')
 const Category = require('../../models/category')
 const moment = require('moment')
+
 //create
 router.get('/new', (req, res) => {
   res.render('new')
@@ -74,9 +75,9 @@ router.put('/:id', (req, res) => {
 
 //delete
 router.delete('/:id', (req, res) => {
-  const id = req.params.id
+  const _id = req.params.id
   const userId = req.user._id
-  return Record.findOne({ id, userId })
+  return Record.findOne({ _id, userId })
     .then(record => record.remove())
     .then(() => res.redirect('/'))
     .catch(err => console.log(err))

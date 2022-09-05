@@ -20,7 +20,6 @@ router.get('/', (req, res) => {
 //search
 //sort
 router.get('/sort', (req, res) => {
-  const householdSelected = 'selected'
   const userId = req.user._id
   const sort = req.query.sort
   let totalAmount = 0
