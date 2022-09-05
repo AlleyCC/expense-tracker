@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Record = require('../../models/record')
 const Category = require('../../models/category')
+const moment = require('moment')
 //create
 router.get('/new', (req, res) => {
   res.render('new')
@@ -10,15 +11,17 @@ router.get('/new', (req, res) => {
 router.post('/', (req, res) => {
   const { name, date, amount, category } = req.body
   const userId = req.user._id
-  Category.findOne({ category })
-    .then(category => {
-      const categoryId = category._id
+  Category.findOne({name: category})
+    .then(item => {
+      const categoryId = item._id
+      const icon = item.icon
       return Record.create({ 
         name, 
         date, 
         amount, 
         categoryId,
-        userId
+        userId,
+        icon
       })
         .then(() => res.redirect('/'))
         .catch(err => console.log(err))
@@ -28,9 +31,9 @@ router.post('/', (req, res) => {
 
 //edit
 router.get('/:id/edit', (req, res) => {
-  const id = req.params.id
+  const _id = req.params.id
   const userId = req.user._id
-  Record.findOne({ id, userId })
+  Record.findOne({ _id, userId })
     .lean()
     .then(record => {
       const categoryId = record.categoryId
@@ -39,7 +42,8 @@ router.get('/:id/edit', (req, res) => {
         .lean()
         .then(data => {
           const category = data.name
-          res.render('edit', { record, category })
+          const date = moment(record.date).format('YYYY-MM-DD')
+          res.render('edit', { record, category, date })
         })
     })
     .catch(err => console.log(err))
@@ -47,21 +51,22 @@ router.get('/:id/edit', (req, res) => {
 
 router.put('/:id', (req, res) => {
   const { name, date, category, amount } = req.body
-  const id = req.params.id
+  const _id = req.params.id
   const userId = req.user._id
-  Category.findOne({ category })
-    .then(category => {
-      const categoryId = category._id
-      return Record.findOne({ id, userId })
+  Category.findOne({ name: category })
+    .then(item => {
+      const categoryId = item._id
+      const icon = item.icon
+      return Record.findOne({ _id, userId })
                   .then(record => {
-                    console.log('categoryId', categoryId)
                     record.name = name
                     record.date = date
                     record.amount = amount
                     record.categoryId = categoryId
+                    record.icon = icon
                     return record.save()
                   })
-                  .then(() => res.redirect(`/records/${id}`))
+                  .then(() => res.redirect('/'))
                   .catch(err => console.log(err))
     }) 
     .catch(err => console.log(err)) 
