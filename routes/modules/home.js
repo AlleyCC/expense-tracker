@@ -19,82 +19,38 @@ router.get('/', (req, res) => {
 
 //search
 //sort
+const sortOptions = {
+  household: { name: '家居物業' },
+  traffic: { name: '交通出行' },
+  entertainment: { name: '休閒娛樂' },
+  food: { name: '餐飲食品' },
+  others: { name: '其他' }
+}
 router.get('/sort', (req, res) => {
-  const userId = req.user._id
-  const sort = req.query.sort
-  let totalAmount = 0
-  if (sort === 'household') {
-    Category.find({name: '家居物業'})
-    .lean()
-    .then(categoryData => {
-      const categoryId = categoryData[0]._id
-      Records.find({categoryId, userId})
-        .lean()
-        .then(records => {
-          records.map(record => {
+  // const sort = req.query.sort
+  const sortOption = sortOptions[req.query.sort]
+  console.log('req.query.sort', req.query.sort)
+  if (!sortOption) {
+    return res.redirect('/')
+  } else {
+    const userId = req.user._id
+    let totalAmount = 0
+    console.log('找到分類標籤',sortOption)
+    Category.find(sortOption)
+      .lean()
+      .then(categoryData => {
+        console.log(categoryData)
+        const categoryId = categoryData[0]._id
+        Records.find({ categoryId, userId })
+          .lean()
+          .then(records => {
+            records.map(record => {
             totalAmount += record.amount
+            })
+            res.render('index', { records, sortOption: req.query.sort, totalAmount })
           })
-          res.render('index', { records, householdSelected: 'selected', totalAmount })
-        }) 
-    })
-  } else if (sort === 'traffic') {
-    Category.find({name: '交通出行'})
-    .lean()
-    .then(categoryData => {
-      const categoryId = categoryData[0]._id
-      Records.find({categoryId, userId})
-        .lean()
-        .then(records => {
-          records.map(record => {
-            totalAmount += record.amount
-          })
-          res.render('index', { records, trafficSelected: 'selected', totalAmount })
-        }) 
-    })
-  } else if (sort === 'entertainment') {
-    Category.find({name: '休閒娛樂'})
-    .lean()
-    .then(categoryData => {
-      const categoryId = categoryData[0]._id
-      Records.find({categoryId, userId})
-        .lean()
-        .then(records => {
-          records.map(record => {
-            totalAmount += record.amount
-          })
-          res.render('index', { records, entertainmentSelected: 'selected', totalAmount })
-        }) 
-    })
-  } else if (sort === 'food') {
-    Category.find({name: '餐飲食品'})
-    .lean()
-    .then(categoryData => {
-      const categoryId = categoryData[0]._id
-      Records.find({categoryId, userId})
-        .lean()
-        .then(records => {
-          records.map(record => {
-            totalAmount += record.amount
-          })
-          res.render('index', { records, foodSelected: 'selected', totalAmount })
-        }) 
-    })
-  } else if (sort === 'others') {
-    Category.find({name: '其他'})
-    .lean()
-    .then(categoryData => {
-      const categoryId = categoryData[0]._id
-      Records.find({categoryId, userId})
-        .lean()
-        .then(records => {
-          records.map(record => {
-            totalAmount += record.amount
-          })
-          res.render('index', { records, othersSelected: 'selected', totalAmount })
-        }) 
-    })
-  }
-  
+      })
+  }  
 })
 
 

@@ -1,9 +1,6 @@
+require('dotenv').config()
 const Category = require('../category')
 const db = require('../../config/mongoose')
-
-
-require('dotenv').config()
-
 
 SEED_CATEGORY = [{
   'name': '家居物業',

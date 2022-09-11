@@ -1,6 +1,7 @@
 const express = require('express')
 const session = require('express-session')
 const { engine } = require('express-handlebars') 
+const handlebarsHelpers = require('./helpers/handlebars-helpers')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const flash = require('connect-flash')
@@ -16,7 +17,7 @@ const app = express()
 const PORT = process.env.PORT
 
 
-app.engine('hbs', engine({ defaultLayout: 'main', extname: '.hbs' }))
+app.engine('hbs', engine({ defaultLayout: 'main', extname: '.hbs', helpers: handlebarsHelpers }))
 app.set('view engine', 'hbs')
 
 app.use(session({
