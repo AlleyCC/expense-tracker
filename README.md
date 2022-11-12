@@ -29,7 +29,7 @@
  
  3.Install dependencies: All listed in package.json
  
- 4.input your FACEBOOK_ID and FACEBOOK_SECRET in .env.example file
+ 4.Input your FACEBOOK_ID and FACEBOOK_SECRET in .env file
  
  5.Import seed data
  ```
