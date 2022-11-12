@@ -1,6 +1,6 @@
 # expense-tracker
 
- An expense-tracker app builded with Node.js, and you can use CRUD operation with it.
+ An expense-tracker app built with Node.js, and you can use CRUD operation with it.
  
  ## Features 
 
