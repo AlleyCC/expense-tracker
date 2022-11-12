@@ -1,6 +1,6 @@
 # expense-tracker
 
- 屬於你的個人化記帳本
+ An expense-tracker app builded with Node.js, and you can use CRUD operation with it.
  
  ## Features 
 
@@ -18,29 +18,28 @@
 
  ## Install 
  
- 1.打開終端機，將此專案複製至本機
+ 1.Open your console，clone project to your local machine
  ```
  git clone https://github.com/AlleyCC/expense-tracker.git
  ```
- 2.cd進入檔案夾中並安裝npm
+ 2.cd into files and install npm
+ ```
+ npm install
+ ```
  
- 3.安裝其他套件: 詳閱package.json檔中的"dependencies"
+ 3.Install dependencies: All listed in package.json
  
- 4.於.env.example檔中輸入你的FACEBOOK_ID以及FACEBOOK_SECRET
+ 4.input your FACEBOOK_ID and FACEBOOK_SECRET in .env.example file
  
- 5.匯入內建預設使用者資料
+ 5.Import seed data
  ```
- npm run seed1
+ npm run seed
  ```
- then,
- ```
- npm run seed2
- ```
- 6.執行檔案
+ 6.Run the file
  ```
  npm run dev
  ```
- 7.至瀏覽器網址欄輸入
+ 7.Input address below into browser
  ```
  http://localhost:3000
  ```
